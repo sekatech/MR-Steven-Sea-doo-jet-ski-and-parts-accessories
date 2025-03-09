@@ -1,0 +1,305 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MR Steven Sea-Doo | Jet Ski & Parts Accessories</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #121212;
+            color: #e0e0e0;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #1f1f1f;
+            color: white;
+            padding: 15px;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin: 0 15px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ff4c00;
+        }
+
+        .cart-icon {
+            position: relative;
+        }
+
+        .cart-icon span {
+            background: #ff4c00;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 12px;
+            position: absolute;
+            top: -10px;
+            right: -10px;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 100px 20px;
+            background: url('https://via.placeholder.com/1200x400?text=Sea-Doo+Jet+Skis') no-repeat center center/cover;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .hero button {
+            background: #ff4c00;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .hero button:hover {
+            background: #d84300;
+        }
+
+        /* Products Section */
+        .products {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 20px;
+        }
+
+        .product-card {
+            background: #1f1f1f;
+            padding: 15px;
+            margin: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(255, 76, 0, 0.4);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+            width: 250px;
+        }
+
+        .product-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(255, 76, 0, 0.6);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+            transition: opacity 0.3s;
+        }
+
+        .product-card .hover-image {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            width: calc(100% - 30px);
+            height: 150px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            border-radius: 5px;
+        }
+
+        .product-card:hover .hover-image {
+            opacity: 1;
+        }
+
+        .product-card:hover img {
+            opacity: 0;
+        }
+
+        .product-card h3 {
+            margin: 10px 0;
+        }
+
+        .product-card p {
+            margin: 5px 0;
+        }
+
+        .add-to-cart {
+            background: #ff4c00;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .add-to-cart:hover {
+            background: #d84300;
+        }
+
+        /* Featured Categories Section */
+        .featured-categories {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .category-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s;
+        }
+
+        .category-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .category-card:hover {
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #1f1f1f;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">MR Steven Sea-Doo</div>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Jet Skis</a></li>
+                <li><a href="#">Scooters</a></li>
+                <li><a href="#">Truck Parts</a></li>
+                <li><a href="#">Accessories</a></li>
+                <li class="cart-icon">🛒 <span id="cart-count">0</span></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Top-Quality Jet Skis & Accessories</h1>
+        <p>Find the best parts and accessories for your rides.</p>
+        <button onclick="window.location.href='https://wa.link/gqswe9';">Shop Now</button>
+    </section>
+
+    <!-- Featured Categories Section -->
+    <section class="featured-categories">
+        <h2>Shop by Category</h2>
+        <div class="category-grid">
+            <div class="category-card">
+                <img src="5.jpg" alt="Jet Skis">
+                <h3>Sea-Doo Jet Skis</h3>
+            </div>
+            <div class="category-card">
+                <img src="2.webp" alt="Scooters">
+                <h3>Scooters</h3>
+            </div>
+            <div class="category-card">
+                <img src="1.webp" alt="Truck Parts">
+                <h3>Truck Parts</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products">
+        <div class="product-card">
+            <img src="6.jpg" alt="Jet Ski">
+            <img src="8.jpg" alt="Jet Skis " class="hover-image">
+            <h3>Sea-Doo GTX 300</h3>
+            <p>$12,999</p>
+            <button class="add-to-cart">Add to Cart</button>
+        </div>
+        <div class="product-card">
+            <img src="10.jpg" alt="Scooter">
+            <img src="2.webp" alt="Scooter Hover" class="hover-image">
+            <h3>Electric Scooter Pro</h3>
+            <p>$799</p>
+            <button class="add-to-cart">Add to Cart</button>
+        </div>
+        <div class="product-card">
+            <img src="5.webp" alt="Truck Part">
+            <img src="1.webp" alt="Truck Part Hover" class="hover-image">
+            <h3>Heavy-Duty Engine</h3>
+            <p>$2,499</p>
+            <button class="add-to-cart">Add to Cart</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 MR Steven Sea-Doo | Jet Ski & Parts Accessories</p>
+    </footer>
+
+    <script>
+        // Add to Cart Functionality
+        document.addEventListener("DOMContentLoaded", function() {
+            let cartCount = 0;
+            const cartCounter = document.getElementById("cart-count");
+            const addToCartButtons = document.querySelectorAll(".add-to-cart");
+
+            addToCartButtons.forEach(button => {
+                button.addEventListener("click", function() {
+                    cartCount++;
+                    cartCounter.textContent = cartCount;
+                    alert("Item added to cart!");
+                });
+            });
+        });
+    </script>
+</body>
+</html>
