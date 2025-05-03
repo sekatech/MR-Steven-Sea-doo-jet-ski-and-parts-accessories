@@ -1,305 +1,991 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MR Steven Sea-Doo | Jet Ski & Parts Accessories</title>
+    <title>WaveRider Pro | Premium Jet Skis & Parts</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* General Styles */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: #121212;
-            color: #e0e0e0;
+        /* Color Variables */
+        :root {
+            --primary: #0066cc; /* Ocean blue */
+            --secondary: #ff6600; /* Vibrant orange */
+            --dark: #0a1a2e; /* Navy blue */
+            --light: #f8f9fa;
+            --accent: #00b4d8; /* Light blue */
+            --text: #333333;
+            --text-light: #ffffff;
         }
 
-        /* Navbar */
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--light);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--secondary);
+            color: var(--text-light);
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #e65c00;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 102, 0, 0.3);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--text-light);
+            color: var(--text-light);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--text-light);
+            color: var(--primary);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary);
+            margin: 15px auto 0;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: var(--text-light);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: #1f1f1f;
-            color: white;
-            padding: 15px;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .logo span {
+            color: var(--secondary);
         }
 
         .nav-links {
-            list-style: none;
             display: flex;
+            list-style: none;
         }
 
         .nav-links li {
-            margin: 0 15px;
+            margin-left: 30px;
         }
 
         .nav-links a {
-            color: white;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: #ff4c00;
-        }
-
-        .cart-icon {
+            font-weight: 600;
             position: relative;
         }
 
-        .cart-icon span {
-            background: #ff4c00;
-            border-radius: 50%;
-            padding: 2px 6px;
-            font-size: 12px;
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+
+        .nav-icons {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-icons a {
+            margin-left: 20px;
+            font-size: 20px;
+            color: var(--dark);
+        }
+
+        .nav-icons a:hover {
+            color: var(--secondary);
+        }
+
+        .cart-count {
             position: absolute;
             top: -10px;
             right: -10px;
+            background-color: var(--secondary);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
         }
 
         /* Hero Section */
         .hero {
+            background: linear-gradient(rgba(10, 26, 46, 0.8), rgba(10, 26, 46, 0.8)), 
+                        url('https://images.unsplash.com/photo-1560272564-c83b66b1ad12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
+            height: 100vh;
+            min-height: 700px;
+            display: flex;
+            align-items: center;
             text-align: center;
-            padding: 100px 20px;
-            background: url('https://via.placeholder.com/1200x400?text=Sea-Doo+Jet+Skis') no-repeat center center/cover;
-            color: white;
+            color: var(--text-light);
+            padding-top: 80px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: var(--text-light);
         }
 
         .hero p {
             font-size: 1.2rem;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
+            opacity: 0.9;
         }
 
-        .hero button {
-            background: #ff4c00;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: background 0.3s;
-        }
-
-        .hero button:hover {
-            background: #d84300;
-        }
-
-        /* Products Section */
-        .products {
+        .hero-btns {
             display: flex;
             justify-content: center;
+            gap: 20px;
+        }
+
+        /* Brands Section */
+        .brands {
+            padding: 80px 0;
+            background-color: var(--text-light);
+        }
+
+        .brand-logos {
+            display: flex;
+            justify-content: space-around;
             flex-wrap: wrap;
-            padding: 20px;
+            align-items: center;
+            gap: 30px;
         }
 
-        .product-card {
-            background: #1f1f1f;
-            padding: 15px;
-            margin: 15px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(255, 76, 0, 0.4);
-            text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
-            position: relative;
-            overflow: hidden;
-            width: 250px;
+        .brand-logo {
+            max-width: 150px;
+            filter: grayscale(100%);
+            opacity: 0.7;
+            transition: all 0.3s ease;
         }
 
-        .product-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 12px rgba(255, 76, 0, 0.6);
-        }
-
-        .product-card img {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 5px;
-            transition: opacity 0.3s;
-        }
-
-        .product-card .hover-image {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            width: calc(100% - 30px);
-            height: 150px;
-            opacity: 0;
-            transition: opacity 0.3s;
-            border-radius: 5px;
-        }
-
-        .product-card:hover .hover-image {
+        .brand-logo:hover {
+            filter: grayscale(0);
             opacity: 1;
         }
 
-        .product-card:hover img {
-            opacity: 0;
+        /* Featured Jet Skis */
+        .featured {
+            padding: 80px 0;
+            background-color: #f1f5f9;
         }
 
-        .product-card h3 {
-            margin: 10px 0;
+        .jet-skis {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
         }
 
-        .product-card p {
-            margin: 5px 0;
+        .jet-ski-card {
+            background-color: var(--text-light);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .add-to-cart {
-            background: #ff4c00;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: background 0.3s;
+        .jet-ski-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
         }
 
-        .add-to-cart:hover {
-            background: #d84300;
+        .jet-ski-img {
+            height: 250px;
+            overflow: hidden;
         }
 
-        /* Featured Categories Section */
-        .featured-categories {
-            padding: 20px;
-            text-align: center;
+        .jet-ski-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .jet-ski-card:hover .jet-ski-img img {
+            transform: scale(1.1);
+        }
+
+        .jet-ski-info {
+            padding: 25px;
+        }
+
+        .jet-ski-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .jet-ski-info .price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+
+        .jet-ski-info .features {
+            margin-bottom: 20px;
+        }
+
+        .jet-ski-info .features li {
+            list-style: none;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .jet-ski-info .features li i {
+            color: var(--secondary);
+            margin-right: 10px;
+        }
+
+        /* Categories Section */
+        .categories {
+            padding: 80px 0;
+            background-color: var(--text-light);
         }
 
         .category-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            padding: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
         }
 
         .category-card {
             position: relative;
-            overflow: hidden;
-            border-radius: 10px;
             height: 200px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            transition: transform 0.3s;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
         .category-card img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .category-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .category-overlay {
             position: absolute;
             top: 0;
             left: 0;
-            z-index: -1;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+            display: flex;
+            align-items: flex-end;
+            padding: 20px;
         }
 
-        .category-card:hover {
-            transform: scale(1.05);
+        .category-overlay h3 {
+            color: var(--text-light);
+            font-size: 1.5rem;
+        }
+
+        /* Parts Section */
+        .parts {
+            padding: 80px 0;
+            background-color: #f1f5f9;
+        }
+
+        .parts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .part-card {
+            background-color: var(--text-light);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .part-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .part-img {
+            height: 180px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f8f9fa;
+        }
+
+        .part-img img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+        }
+
+        .part-info {
+            padding: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .part-info h4 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .part-info .price {
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 80px 0;
+            background-color: var(--dark);
+            color: var(--text-light);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+        }
+
+        .contact-info h3 {
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+
+        .contact-info p {
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .contact-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .contact-method {
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-method i {
+            font-size: 24px;
+            color: var(--secondary);
+            margin-right: 15px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--text-light);
+        }
+
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .contact-form textarea {
+            height: 150px;
+            resize: none;
         }
 
         /* Footer */
         footer {
+            background-color: #0a1a2e;
+            color: var(--text-light);
+            padding: 50px 0 20px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            color: var(--text-light);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--secondary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
             text-align: center;
-            padding: 20px;
-            background: #1f1f1f;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.8;
+        }
+
+        /* WhatsApp Float Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25D366;
             color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background-color: var(--text-light);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.5s ease;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links li {
+                margin: 15px 0;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-btns {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                margin-bottom: 30px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/13232076690" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Header -->
     <header>
-        <nav class="navbar">
-            <div class="logo">MR Steven Sea-Doo</div>
-            <ul class="nav-links">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Jet Skis</a></li>
-                <li><a href="#">Scooters</a></li>
-                <li><a href="#">Truck Parts</a></li>
-                <li><a href="#">Accessories</a></li>
-                <li class="cart-icon">🛒 <span id="cart-count">0</span></li>
-            </ul>
-        </nav>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">Wave<span>Rider</span> Pro</a>
+                
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#jet-skis">Jet Skis</a></li>
+                    <li><a href="#parts">Parts</a></li>
+                    <li><a href="#brands">Brands</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                
+                <div class="nav-icons">
+                    <a href="#"><i class="fas fa-search"></i></a>
+                    <a href="#"><i class="fas fa-user"></i></a>
+                    <a href="#" class="cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                </div>
+                
+                <div class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
     </header>
-    
+
     <!-- Hero Section -->
-    <section class="hero">
-        <h1>Top-Quality Jet Skis & Accessories</h1>
-        <p>Find the best parts and accessories for your rides.</p>
-        <button onclick="window.location.href='mailto:jhonathanalcon779@gmail.com?subject=Item%20Inquiry&body=Hi,%20I%20am%20from%20your%20website.%20I%20need%20an%20item.';">
-        Contact Us
-    </button>
-    </section>
-
-    <!-- Featured Categories Section -->
-    <section class="featured-categories">
-        <h2>Shop by Category</h2>
-        <div class="category-grid">
-            <div class="category-card">
-                <img src="5.jpg" alt="Jet Skis">
-                <h3>Sea-Doo Jet Skis</h3>
-            </div>
-            <div class="category-card">
-                <img src="2.webp" alt="Scooters">
-                <h3>Scooters</h3>
-            </div>
-            <div class="category-card">
-                <img src="1.webp" alt="Truck Parts">
-                <h3>Truck Parts</h3>
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Premium Jet Skis & Performance Parts</h1>
+                <p>Experience the thrill of the water with our top-of-the-line jet skis from leading brands. Shop now for the best deals on new and pre-owned models.</p>
+                <div class="hero-btns">
+                    <a href="#jet-skis" class="btn">Browse Jet Skis</a>
+                    <a href="#contact" class="btn btn-outline">Contact Us</a>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Products Section -->
-    <section class="products">
-        <div class="product-card">
-            <img src="6.jpg" alt="Jet Ski">
-            <img src="8.jpg" alt="Jet Skis " class="hover-image">
-            <h3>Sea-Doo GTX 300</h3>
-            <p>$12,999</p>
-            <button class="add-to-cart">Add to Cart</button>
+    <!-- Brands Section -->
+    <section class="brands" id="brands">
+        <div class="container">
+            <h2 class="section-title">Our Trusted Brands</h2>
+            <div class="brand-logos">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Sea-Doo_logo.svg/1200px-Sea-Doo_logo.svg.png" alt="Sea-Doo" class="brand-logo">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Yamaha_Motor_Company_logo.svg/2560px-Yamaha_Motor_Company_logo.svg.png" alt="Yamaha" class="brand-logo">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Polaris_Industries_logo.svg/1200px-Polaris_Industries_logo.svg.png" alt="Polaris" class="brand-logo">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Kawasaki_logo.svg/2560px-Kawasaki_logo.svg.png" alt="Kawasaki" class="brand-logo">
+            </div>
         </div>
-        <div class="product-card">
-            <img src="10.jpg" alt="Scooter">
-            <img src="2.webp" alt="Scooter Hover" class="hover-image">
-            <h3>Electric Scooter Pro</h3>
-            <p>$799</p>
-            <button class="add-to-cart">Add to Cart</button>
+    </section>
+
+    <!-- Featured Jet Skis -->
+    <section class="featured" id="jet-skis">
+        <div class="container">
+            <h2 class="section-title">Featured Jet Skis</h2>
+            <div class="jet-skis">
+                <!-- Sea-Doo Models -->
+                <div class="jet-ski-card">
+                    <div class="jet-ski-img">
+                        <img src="https://images.unsplash.com/photo-1600679472829-3044539ce8ed?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Sea-Doo RXP-X 300">
+                    </div>
+                    <div class="jet-ski-info">
+                        <h3>Sea-Doo RXP-X 300</h3>
+                        <div class="price">$16,499</div>
+                        <ul class="features">
+                            <li><i class="fas fa-bolt"></i> 300 HP Supercharged Engine</li>
+                            <li><i class="fas fa-tachometer-alt"></i> Top Speed: 67 mph</li>
+                            <li><i class="fas fa-users"></i> 3-Person Capacity</li>
+                            <li><i class="fas fa-clock"></i> 0-50 mph in 3.9 sec</li>
+                        </ul>
+                        <a href="#" class="btn">View Details</a>
+                    </div>
+                </div>
+                
+                <!-- Yamaha Models -->
+                <div class="jet-ski-card">
+                    <div class="jet-ski-img">
+                        <img src="https://images.unsplash.com/photo-1518562180175-34a163b1a9a9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Yamaha FX Cruiser SVHO">
+                    </div>
+                    <div class="jet-ski-info">
+                        <h3>Yamaha FX Cruiser SVHO</h3>
+                        <div class="price">$18,999</div>
+                        <ul class="features">
+                            <li><i class="fas fa-bolt"></i> 1.8L Supercharged Engine</li>
+                            <li><i class="fas fa-tachometer-alt"></i> Top Speed: 70 mph</li>
+                            <li><i class="fas fa-users"></i> 3-Person Capacity</li>
+                            <li><i class="fas fa-anchor"></i> Cruise Assist Technology</li>
+                        </ul>
+                        <a href="#" class="btn">View Details</a>
+                    </div>
+                </div>
+                
+                <!-- Kawasaki Models -->
+                <div class="jet-ski-card">
+                    <div class="jet-ski-img">
+                        <img src="https://www.kawasaki.com/content/dam/kawasaki/en_us/PersonalWatercraft/Ultra/2023/310X/Images/23PWC_ULTRA_310X_GN1_STU.jpg" alt="Kawasaki Ultra 310X">
+                    </div>
+                    <div class="jet-ski-info">
+                        <h3>Kawasaki Ultra 310X</h3>
+                        <div class="price">$19,299</div>
+                        <ul class="features">
+                            <li><i class="fas fa-bolt"></i> 310 HP Supercharged Engine</li>
+                            <li><i class="fas fa-tachometer-alt"></i> Top Speed: 67 mph</li>
+                            <li><i class="fas fa-users"></i> 3-Person Capacity</li>
+                            <li><i class="fas fa-shield-alt"></i> Smart Steering System</li>
+                        </ul>
+                        <a href="#" class="btn">View Details</a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="product-card">
-            <img src="5.webp" alt="Truck Part">
-            <img src="1.webp" alt="Truck Part Hover" class="hover-image">
-            <h3>Heavy-Duty Engine</h3>
-            <p>$2,499</p>
-            <button class="add-to-cart">Add to Cart</button>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories">
+        <div class="container">
+            <h2 class="section-title">Shop by Category</h2>
+            <div class="category-grid">
+                <div class="category-card">
+                    <img src="https://images.unsplash.com/photo-1600679472829-3044539ce8ed?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Sea-Doo Jet Skis">
+                    <div class="category-overlay">
+                        <h3>Sea-Doo</h3>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <img src="https://images.unsplash.com/photo-1518562180175-34a163b1a9a9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Yamaha Jet Skis">
+                    <div class="category-overlay">
+                        <h3>Yamaha</h3>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <img src="https://www.polaris.com/en-us/watercraft/rzr-turbos/wp-content/uploads/2021/12/rzr-turbo-ultimate-hero.jpg" alt="Polaris Jet Skis">
+                    <div class="category-overlay">
+                        <h3>Polaris</h3>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <img src="https://www.kawasaki.com/content/dam/kawasaki/en_us/PersonalWatercraft/Ultra/2023/310X/Images/23PWC_ULTRA_310X_GN1_STU.jpg" alt="Kawasaki Jet Skis">
+                    <div class="category-overlay">
+                        <h3>Kawasaki</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Parts Section -->
+    <section class="parts" id="parts">
+        <div class="container">
+            <h2 class="section-title">Jet Ski Parts & Accessories</h2>
+            <div class="parts-grid">
+                <div class="part-card">
+                    <div class="part-img">
+                        <img src="https://m.media-amazon.com/images/I/61X0t1u4sVL._AC_SL1500_.jpg" alt="Jet Ski Cover">
+                    </div>
+                    <div class="part-info">
+                        <h4>Premium Jet Ski Cover</h4>
+                        <div class="price">$129.99</div>
+                        <a href="#" class="btn">Add to Cart</a>
+                    </div>
+                </div>
+                <div class="part-card">
+                    <div class="part-img">
+                        <img src="https://m.media-amazon.com/images/I/71xJ8U9H3FL._AC_SL1500_.jpg" alt="Jet Ski Battery">
+                    </div>
+                    <div class="part-info">
+                        <h4>AGM Jet Ski Battery</h4>
+                        <div class="price">$149.99</div>
+                        <a href="#" class="btn">Add to Cart</a>
+                    </div>
+                </div>
+                <div class="part-card">
+                    <div class="part-img">
+                        <img src="https://m.media-amazon.com/images/I/71b5Y4vG1BL._AC_SL1500_.jpg" alt="Jet Ski Trailer">
+                    </div>
+                    <div class="part-info">
+                        <h4>Single Jet Ski Trailer</h4>
+                        <div class="price">$1,299.99</div>
+                        <a href="#" class="btn">Add to Cart</a>
+                    </div>
+                </div>
+                <div class="part-card">
+                    <div class="part-img">
+                        <img src="https://m.media-amazon.com/images/I/81z2Q4nKkRL._AC_SL1500_.jpg" alt="Jet Ski Life Jacket">
+                    </div>
+                    <div class="part-info">
+                        <h4>Performance Life Jacket</h4>
+                        <div class="price">$89.99</div>
+                        <a href="#" class="btn">Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">Contact Us</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Get In Touch</h3>
+                    <p>Have questions about our jet skis or parts? Contact our team of experts who are ready to help you find the perfect watercraft for your needs.</p>
+                    <div class="contact-methods">
+                        <div class="contact-method">
+                            <i class="fas fa-phone"></i>
+                            <span>(323) 207-6690</span>
+                        </div>
+                        <div class="contact-method">
+                            <i class="fas fa-envelope"></i>
+                            <span>seadoojetski3@gmail.com</span>
+                        </div>
+                        <div class="contact-method">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Los Angeles, California</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form>
+                        <input type="text" placeholder="Your Name" required>
+                        <input type="email" placeholder="Your Email" required>
+                        <input type="tel" placeholder="Your Phone">
+                        <textarea placeholder="Your Message" required></textarea>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2025 MR Steven Sea-Doo | Jet Ski & Parts Accessories</p>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h4>WaveRider Pro</h4>
+                    <p>Your premier destination for high-performance jet skis and parts from top brands like Sea-Doo, Yamaha, Kawasaki, and Polaris.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#jet-skis">Jet Skis</a></li>
+                        <li><a href="#parts">Parts</a></li>
+                        <li><a href="#brands">Brands</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Shipping Policy</a></li>
+                        <li><a href="#">Return Policy</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Newsletter</h4>
+                    <p>Subscribe to our newsletter for the latest products and offers.</p>
+                    <form>
+                        <input type="email" placeholder="Your Email" required>
+                        <button type="submit" class="btn">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 WaveRider Pro. All Rights Reserved.</p>
+            </div>
+        </div>
     </footer>
 
     <script>
-        // Add to Cart Functionality
-        document.addEventListener("DOMContentLoaded", function() {
-            let cartCount = 0;
-            const cartCounter = document.getElementById("cart-count");
-            const addToCartButtons = document.querySelectorAll(".add-to-cart");
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
 
-            addToCartButtons.forEach(button => {
-                button.addEventListener("click", function() {
-                    cartCount++;
-                    cartCounter.textContent = cartCount;
-                    alert("Item added to cart!");
-                });
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Add to cart functionality
+        const addToCartButtons = document.querySelectorAll('.parts-grid .btn');
+        const cartCount = document.querySelector('.cart-count');
+        let count = 0;
+
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                count++;
+                cartCount.textContent = count;
+                
+                // Animation effect
+                button.textContent = 'Added!';
+                setTimeout(() => {
+                    button.textContent = 'Add to Cart';
+                }, 1000);
             });
         });
     </script>
